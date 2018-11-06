@@ -1,12 +1,12 @@
 const React = require ('react');
 const PropTypes = require ('prop-types');
 
-function NewPostForm () {
+
+function NewPostForm (props) {
   return (
-    <div className = 'newPost'>
-      <h1>this is my new post form</h1>
-    </div>
+   <h2>this is a form</h2>
   )
 }
 
 module.exports = NewPostForm;
+  

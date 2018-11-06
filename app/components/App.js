@@ -15,7 +15,8 @@ function Header () {
 function NewPostBtn (props) {
   return (
     <button 
-      className='newPostButn'>
+      className='newPostButn'
+      onClick = {props.makePost}>
       New post
     </button>
   )
@@ -50,8 +51,9 @@ class App extends React.Component {
       <div className = 'container'>
         < Header />
         < NewPostBtn 
-          onClick = {this.openForm} />
-        {this.state.makingPost && <NewPostForm />}
+          makePost = {this.openForm} />
+        {this.state.makingPost && 
+          <NewPostForm />}
 
       </div>
     )
