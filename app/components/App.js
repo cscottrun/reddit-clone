@@ -33,9 +33,11 @@ class App extends React.Component {
 
     this.state = {
       makingPost: false,
-      posts: null
+      postCounter: 1,
+      posts: ''
     }
     this.openForm = this.openForm.bind(this);
+    this.handleStartNewPost = this.handleStartNewPost.bind(this);
   }
   openForm () {
     this.setState ( function() {
@@ -44,6 +46,24 @@ class App extends React.Component {
       }
     })
   }
+  handleStartNewPost(e) {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+    let num = target.id;
+    let title = (name === 'title' && value);    
+    this.setState({
+        posts: {[num]: {title: value}}
+    })
+  }
+
+  handleBuildPost(e) {
+    let body = (e.target.name === 'body' && value);
+    this.setState ({
+
+    })
+  }
+  
 
   render () {
     return (
@@ -52,7 +72,12 @@ class App extends React.Component {
         < NewPostBtn 
           makePost = {this.openForm} />
         {this.state.makingPost && 
-          <NewPostForm />}
+          <NewPostForm
+          startNewPost = {this.handleStartNewPost}
+          buildPost = {this.handleBuildPost}
+          id = {this.state.postCounter}
+          
+          />}
 
       </div>
     )
