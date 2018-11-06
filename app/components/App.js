@@ -33,8 +33,13 @@ class App extends React.Component {
 
     this.state = {
       makingPost: false,
-      postCounter: 1,
-      posts: ''
+      postCounter: 2,
+      posts: {1: {
+        title: 'I heart bananas',
+        body: 'bananas are my favorite fruit',
+        author: 'Zubair',
+        img: 'https://media.licdn.com/dms/image/C4D03AQGDsySczUr_sw/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=AZozQ7cXLfTayXPXj2IsXMUmYxfSLgkIPJ_XdPIAD3k',
+      }}
     }
     this.openForm = this.openForm.bind(this);
     this.import = this.import.bind(this);
@@ -45,22 +50,38 @@ class App extends React.Component {
         {makingPost: true}
     )
   }
-
+  //this is my attempt to use prevstate
   import(data) {
+    let newPost = {
+      title: data.title, 
+      body: data.body,
+      author: data.author,
+      img: data.img,
+      votes: null
+    }
     let id = this.state.postCounter;
-    this.setState ({
-      posts: {[id]: {
-        title: data.title, 
-        body: data.body,
-        author: data.author,
-        img: data.img,
-        votes: null
-        }
-      },
-      makingPost: false,
-      //dont forget to increment post counter
+    this.setState( (prevstate) => {
+      prevstate.posts[id] = newPost; 
+      return prevstate;
     })
   }
+
+  // // this one works, but overwrites state. need to add to old
+  // import(data) {
+  //   let id = this.state.postCounter;
+  //   this.setState ({
+  //     posts: {[id]: {
+  //       title: data.title, 
+  //       body: data.body,
+  //       author: data.author,
+  //       img: data.img,
+  //       votes: null
+  //       }
+  //     },
+  //     makingPost: false,
+  //     //dont forget to increment post counter
+  //   })
+  // }
 
   render () {
     return (

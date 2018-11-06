@@ -84,7 +84,7 @@ class NewPostForm extends React.Component {
           onChange={this.handleInput}/>
         </div>
 
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Create Post" />
         
 
       </form>
