@@ -42,8 +42,7 @@ class App extends React.Component {
       return {
         makingPost: true
       }
-    }
-    )
+    })
   }
 
   render () {
