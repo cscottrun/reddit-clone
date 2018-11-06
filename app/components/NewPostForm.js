@@ -6,9 +6,10 @@ class NewPostForm extends React.Component {
       super(props);
 
       this.state = {
-        
           title: '',
-          body: ''
+          body: '',
+          author: '',
+          img: ''
         
       }
 
@@ -20,16 +21,21 @@ class NewPostForm extends React.Component {
     const target = e.target;
     const value = target.value;
     const name = target.name;
-    const id = target.id;
     this.setState(
        {[name]:value},
     )
   }
   handleSubmit(e) {
     e.preventDefault();
-    let shipment = this.state
-    this.props.export(shipment);
-    this.setState({ title: '', body: ''})
+    
+    this.props.export(this.state);
+    //reset this state to blank
+    this.setState({ 
+      title: '', 
+      body: '',
+      author: '',
+      img: ''
+    })
   }
   
   // {() => this.prop.func()}
@@ -42,7 +48,6 @@ class NewPostForm extends React.Component {
         <div className="control">
           <input 
           className="input" 
-          id={this.props.id} 
           type="text" 
           name="title" 
           value={this.state.title} 
@@ -53,10 +58,29 @@ class NewPostForm extends React.Component {
         <div className="control">
           <input 
           className="input" 
-          id={this.props.id} 
           type="text" 
           name="body" 
           value={this.state.body} 
+          onChange={this.handleInput}/>
+        </div>
+
+        <label className="label">Author</label>
+        <div className="control">
+          <input 
+          className="input" 
+          type="text" 
+          name="author" 
+          value={this.state.author} 
+          onChange={this.handleInput}/>
+        </div>
+
+        <label className="label">Image Url</label>
+        <div className="control">
+          <input 
+          className="input" 
+          type="text" 
+          name="img" 
+          value={this.state.img} 
           onChange={this.handleInput}/>
         </div>
 

@@ -48,12 +48,17 @@ class App extends React.Component {
 
   import(data) {
     let id = this.state.postCounter;
-    let title = data.title;
-    let body = data.body
     this.setState ({
-      posts: {[id]: {title: title, body: body}
+      posts: {[id]: {
+        title: data.title, 
+        body: data.body,
+        author: data.author,
+        img: data.img,
+        votes: null
+        }
       },
-      makingPost: false
+      makingPost: false,
+      //dont forget to increment post counter
     })
   }
 
