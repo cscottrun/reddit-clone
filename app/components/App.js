@@ -61,7 +61,9 @@ class App extends React.Component {
     }
     let id = this.state.postCounter;
     this.setState( (prevstate) => {
-      prevstate.posts[id] = newPost; 
+      prevstate.posts[id] = newPost;
+      prevstate.postCounter = prevstate.postCounter + 1;
+      prevstate.makingPost = false;
       return prevstate;
     })
   }
