@@ -47,9 +47,12 @@ class App extends React.Component {
   }
 
   import(data) {
-    // let id = this.state.postCounter;
+    let id = this.state.postCounter;
+    let title = data.title;
+    let body = data.body
     this.setState ({
-      posts: data,
+      posts: {[id]: {title: title, body: body}
+      },
       makingPost: false
     })
   }
@@ -66,7 +69,6 @@ class App extends React.Component {
           id = {this.postCounter}
           export = {this.import}
           />}
-      <div><h2>titile passed by kid: {this.state.posts}</h2></div>
 
       </div>
     )

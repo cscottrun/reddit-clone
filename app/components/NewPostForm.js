@@ -6,7 +6,10 @@ class NewPostForm extends React.Component {
       super(props);
 
       this.state = {
-        title: ''
+        
+          title: '',
+          body: ''
+        
       }
 
     this.handleInput = this.handleInput.bind(this)
@@ -19,13 +22,14 @@ class NewPostForm extends React.Component {
     const name = target.name;
     const id = target.id;
     this.setState(
-       {title: value}
+       {[name]:value},
     )
   }
   handleSubmit(e) {
     e.preventDefault();
-    this.props.export(this.state.title);
-    this.setState({ title: ''})
+    let shipment = this.state
+    this.props.export(shipment);
+    this.setState({ title: '', body: ''})
   }
   
   // {() => this.prop.func()}
