@@ -37,33 +37,22 @@ class App extends React.Component {
       posts: ''
     }
     this.openForm = this.openForm.bind(this);
-    this.handleStartNewPost = this.handleStartNewPost.bind(this);
+    this.import = this.import.bind(this);
+    
   }
   openForm () {
-    this.setState ( function() {
-      return {
-        makingPost: true
-      }
-    })
-  }
-  handleStartNewPost(e) {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
-    let num = target.id;
-    let title = (name === 'title' && value);    
-    this.setState({
-        posts: {[num]: {title: value}}
-    })
+    this.setState ( 
+        {makingPost: true}
+    )
   }
 
-  handleBuildPost(e) {
-    let body = (e.target.name === 'body' && value);
+  import(data) {
+    // let id = this.state.postCounter;
     this.setState ({
-
+      posts: data,
+      makingPost: false
     })
   }
-  
 
   render () {
     return (
@@ -71,13 +60,13 @@ class App extends React.Component {
         < Header />
         < NewPostBtn 
           makePost = {this.openForm} />
+        
         {this.state.makingPost && 
-          <NewPostForm
-          startNewPost = {this.handleStartNewPost}
-          buildPost = {this.handleBuildPost}
-          id = {this.state.postCounter}
-          
+        < NewPostForm
+          id = {this.postCounter}
+          export = {this.import}
           />}
+      <div><h2>titile passed by kid: {this.state.posts}</h2></div>
 
       </div>
     )
