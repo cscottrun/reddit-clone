@@ -28,9 +28,6 @@ a {
   margin-right: auto;
   margin-left: auto;
 }
-#error{
-  border: 1px solid red;
-}
 .control, .label {
   display: block;
   margin: auto;
@@ -40,10 +37,13 @@ a {
 .label{
   font-weight: bold;
 }
-.input{
+input, textarea {
   width: 400px;
   line-height: 20px;
   border-radius: 5px;
+}
+.error{
+border: 1px solid red;
 }
 .createpost{
   background-color: turquoise;
