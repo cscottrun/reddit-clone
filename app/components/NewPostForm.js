@@ -9,13 +9,37 @@ class NewPostForm extends React.Component {
           title: '',
           body: '',
           author: '',
-          img: ''
-        
+          img: '',
+          touched: {
+            title: '',
+            body: '',
+            author: '',
+            img: '',
+          }
       }
 
     this.handleInput = this.handleInput.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
+    this.markError = this.markError.bind(this)
+    }
+
+  
+  handleBlur (e) {
+    const name = e.target.name;
+    this.setState ((prevstate) => {
+      prevstate.touched[name] = true;
+    })
   }
+  
+  markError(e) {
+    const name = e;
+    if (
+      // this.state[field].length < 1 && 
+      this.state.touched[name] === true) {
+      return true;
+    }
+  };
 
   handleInput(e) {
     const target = e.target;
@@ -27,9 +51,7 @@ class NewPostForm extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    
     this.props.export(this.state);
-    //reset this state to blank
     this.setState({ 
       title: '', 
       body: '',
@@ -38,16 +60,17 @@ class NewPostForm extends React.Component {
     })
   }
   
-  // {() => this.prop.func()}
   render() {
+
     return (
       <div className="form">
       <form onSubmit = {this.handleSubmit}>
 
         <label className="label">Title</label>
         <div className="control">
-          <input 
-          className="input" 
+          <input
+          onBlur={this.handleBlur} 
+          className={this.markError('title') ? 'error' : '' }
           type="text" 
           name="title" 
           value={this.state.title} 
@@ -57,7 +80,7 @@ class NewPostForm extends React.Component {
         <label className="label">Body</label>
         <div className="control">
           <textarea 
-          className="input" 
+          onBlur={this.handleBlur} 
           type="text" 
           name="body" 
           value={this.state.body} 
@@ -67,7 +90,7 @@ class NewPostForm extends React.Component {
         <label className="label">Author</label>
         <div className="control">
           <input 
-          className="input" 
+          onBlur={this.handleBlur} 
           type="text" 
           name="author" 
           value={this.state.author} 
@@ -77,7 +100,7 @@ class NewPostForm extends React.Component {
         <label className="label">Image Url</label>
         <div className="control">
           <input 
-          className="input" 
+          onBlur={this.handleBlur} 
           type="text" 
           name="img" 
           value={this.state.img} 
