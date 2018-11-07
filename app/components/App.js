@@ -1,7 +1,7 @@
 const React = require ('react');
 const PropTypes = require ('prop-types');
 const NewPostForm = require ('./NewPostForm');
-
+const PostList = require ('./Postlist')
 
 //actual header
 function Header () {
@@ -15,7 +15,7 @@ function Header () {
 function NewPostBtn (props) {
   return (
     <button 
-      className='newPostButn'
+      className='newPostBtn'
       onClick = {props.makePost}>
       New post
     </button>
@@ -24,8 +24,8 @@ function NewPostBtn (props) {
 
 
 //filter input box
-//sort by votes 
-//new post button
+// add timestamp onSubmit
+
 
 class App extends React.Component {
   constructor (props) {
@@ -33,33 +33,45 @@ class App extends React.Component {
 
     this.state = {
       makingPost: false,
-      postCounter: 2,
+      postCounter: 3,
       posts: {1: {
+        id: 1,
         title: 'I heart bananas',
         body: 'bananas are my favorite fruit',
         author: 'Zubair',
         img: 'https://media.licdn.com/dms/image/C4D03AQGDsySczUr_sw/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=AZozQ7cXLfTayXPXj2IsXMUmYxfSLgkIPJ_XdPIAD3k',
+        votes: 4
+      },
+      2: {
+        id: 2,
+        title: 'My love of posts',
+        body: 'this is my second post',
+        author: 'carrie',
+        img: 'https://www.noelgay.com/wp-content/uploads/2017/10/Carrie-Scott-2-185x230.jpg',
+        votes: 2
       }}
     }
     this.openForm = this.openForm.bind(this);
     this.import = this.import.bind(this);
+    this.upvote = this.upvote.bind(this);
+    this.downvote = this.downvote.bind(this);
     
   }
   openForm () {
-    this.setState ( 
-        {makingPost: true}
-    )
+    this.setState ( (prevState) => ({
+      makingPost: !prevState.makingPost
+    }))
   }
-  //this is my attempt to use prevstate
   import(data) {
+    let id = this.state.postCounter;
     let newPost = {
+      id: id,
       title: data.title, 
       body: data.body,
       author: data.author,
       img: data.img,
       votes: null
     }
-    let id = this.state.postCounter;
     this.setState( (prevstate) => {
       prevstate.posts[id] = newPost;
       prevstate.postCounter = prevstate.postCounter + 1;
@@ -67,23 +79,21 @@ class App extends React.Component {
       return prevstate;
     })
   }
-
-  // // this one works, but overwrites state. need to add to old
-  // import(data) {
-  //   let id = this.state.postCounter;
-  //   this.setState ({
-  //     posts: {[id]: {
-  //       title: data.title, 
-  //       body: data.body,
-  //       author: data.author,
-  //       img: data.img,
-  //       votes: null
-  //       }
-  //     },
-  //     makingPost: false,
-  //     //dont forget to increment post counter
-  //   })
-  // }
+  upvote(e,id) {
+    this.setState ( (prevstate) => {
+      prevstate.posts[id].votes = prevstate.posts[id].votes +1;
+      return prevstate;
+    })
+  }
+  downvote(e,id) {
+    this.setState ( (prevstate) => {
+      if (prevstate.posts[id].votes > 0) {
+      prevstate.posts[id].votes = prevstate.posts[id].votes -1
+      };
+      return prevstate;
+    })
+  }
+  
 
   render () {
     return (
@@ -97,6 +107,12 @@ class App extends React.Component {
           id = {this.postCounter}
           export = {this.import}
           />}
+        < PostList 
+          posts = {this.state.posts}
+          upvote = {this.upvote}
+          downvote = {this.downvote}
+        
+        />
 
       </div>
     )
