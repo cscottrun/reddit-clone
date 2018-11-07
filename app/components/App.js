@@ -35,6 +35,7 @@ class App extends React.Component {
       makingPost: false,
       postCounter: 3,
       posts: {1: {
+        id: 1,
         title: 'I heart bananas',
         body: 'bananas are my favorite fruit',
         author: 'Zubair',
@@ -42,6 +43,7 @@ class App extends React.Component {
         votes: 4
       },
       2: {
+        id: 2,
         title: 'My love of posts',
         body: 'this is my second post',
         author: 'carrie',
@@ -51,6 +53,8 @@ class App extends React.Component {
     }
     this.openForm = this.openForm.bind(this);
     this.import = this.import.bind(this);
+    this.upvote = this.upvote.bind(this);
+    this.downvote = this.downvote.bind(this);
     
   }
   openForm () {
@@ -59,14 +63,15 @@ class App extends React.Component {
     )
   }
   import(data) {
+    let id = this.state.postCounter;
     let newPost = {
+      id: id,
       title: data.title, 
       body: data.body,
       author: data.author,
       img: data.img,
       votes: null
     }
-    let id = this.state.postCounter;
     this.setState( (prevstate) => {
       prevstate.posts[id] = newPost;
       prevstate.postCounter = prevstate.postCounter + 1;
@@ -74,7 +79,21 @@ class App extends React.Component {
       return prevstate;
     })
   }
-
+  upvote(e,id) {
+    this.setState ( (prevstate) => {
+      prevstate.posts[id].votes = prevstate.posts[id].votes +1;
+      return prevstate;
+    })
+  }
+  downvote(e,id) {
+    this.setState ( (prevstate) => {
+      if (prevstate.posts[id].votes > 0) {
+      prevstate.posts[id].votes = prevstate.posts[id].votes -1
+      };
+      return prevstate;
+    })
+  }
+  
 
   render () {
     return (
@@ -90,6 +109,8 @@ class App extends React.Component {
           />}
         < PostList 
           posts = {this.state.posts}
+          upvote = {this.upvote}
+          downvote = {this.downvote}
         
         />
 

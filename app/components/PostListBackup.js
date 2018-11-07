@@ -1,3 +1,7 @@
+
+// this works, wanted to save before I convert to class
+// didn't export
+
 const React = require ('react');
 const PropTypes = require ('prop-types');
       
@@ -15,7 +19,7 @@ function PostList (props) {
     <div className = 'postList'>
         {postSorted.map( post => {return(
           <div 
-            key= {post.id}
+            key= {post.title}
             className = 'postBox'>
             <div className = 'postImg'>
               <img id = 'postImg' src={post.img} alt={'img for '+ post.title}/> 
@@ -24,13 +28,9 @@ function PostList (props) {
                 <img id = 'upvote' 
                     src="app/assets/thumb.png" 
                     alt="upvote"
-                    onClick = {(e) => props.upvote(e,post.id)}
+                    
                     />
-                <img id = 'downvote' 
-                    src="app/assets/thumb.png" 
-                    alt="downvote"
-                    onClick = {(e) => props.downvote(e,post.id)}
-                    />
+                <img id = 'downvote' src="app/assets/thumb.png" alt="downvote"/>
                 <h3 id= 'votecount'>{post.votes}</h3>
 
               </div>
@@ -56,4 +56,5 @@ function PostList (props) {
 
 
 
-module.exports= PostList;
+
+
