@@ -58,9 +58,9 @@ class App extends React.Component {
     
   }
   openForm () {
-    this.setState ( 
-        {makingPost: true}
-    )
+    this.setState ( (prevState) => ({
+      makingPost: !prevState.makingPost
+    }))
   }
   import(data) {
     let id = this.state.postCounter;
