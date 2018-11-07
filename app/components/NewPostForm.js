@@ -56,7 +56,7 @@ class NewPostForm extends React.Component {
 
         <label className="label">Body</label>
         <div className="control">
-          <input 
+          <textarea 
           className="input" 
           type="text" 
           name="body" 
@@ -83,9 +83,10 @@ class NewPostForm extends React.Component {
           value={this.state.img} 
           onChange={this.handleInput}/>
         </div>
-
-        <input type="submit" value="Create Post" />
         
+        <div className="control">
+        <input className = 'createpost' type="submit" value="Create Post" />
+        </div>
 
       </form>
       </div> 

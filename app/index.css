@@ -13,14 +13,42 @@ a {
 .header {
   height: 100px;
   background-color: whitesmoke;
+  margin-bottom: 10px;
 }
 .newPostBtn {
   float: right;
-  background-color: blue;
+  background-color: turquoise;
   color: white;
   padding: 5px;
   border-radius: 5px;
   margin: auto;
+}
+.form{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  
+}
+.control, .label {
+  display: block;
+  margin: auto;
+  padding: 3px;
+  padding-left: 300px;
+}
+.label{
+  font-weight: bold;
+}
+.input{
+  width: 400px;
+  line-height: 20px;
+  border-radius: 5px;
+}
+.createpost{
+  background-color: turquoise;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+
 }
 .postBox {
   display: grid;

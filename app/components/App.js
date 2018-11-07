@@ -24,8 +24,8 @@ function NewPostBtn (props) {
 
 
 //filter input box
-//sort by votes 
-//new post button
+// add timestamp onSubmit
+
 
 class App extends React.Component {
   constructor (props) {
