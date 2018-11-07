@@ -1,7 +1,7 @@
 const React = require ('react');
 const PropTypes = require ('prop-types');
 const NewPostForm = require ('./NewPostForm');
-
+const PostList = require ('./Postlist')
 
 //actual header
 function Header () {
@@ -15,7 +15,7 @@ function Header () {
 function NewPostBtn (props) {
   return (
     <button 
-      className='newPostButn'
+      className='newPostBtn'
       onClick = {props.makePost}>
       New post
     </button>
@@ -33,12 +33,20 @@ class App extends React.Component {
 
     this.state = {
       makingPost: false,
-      postCounter: 2,
+      postCounter: 3,
       posts: {1: {
         title: 'I heart bananas',
         body: 'bananas are my favorite fruit',
         author: 'Zubair',
         img: 'https://media.licdn.com/dms/image/C4D03AQGDsySczUr_sw/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=AZozQ7cXLfTayXPXj2IsXMUmYxfSLgkIPJ_XdPIAD3k',
+        votes: 4
+      },
+      2: {
+        title: 'My love of posts',
+        body: 'this is my second post',
+        author: 'carrie',
+        img: 'https://www.noelgay.com/wp-content/uploads/2017/10/Carrie-Scott-2-185x230.jpg',
+        votes: 2
       }}
     }
     this.openForm = this.openForm.bind(this);
@@ -50,7 +58,6 @@ class App extends React.Component {
         {makingPost: true}
     )
   }
-  //this is my attempt to use prevstate
   import(data) {
     let newPost = {
       title: data.title, 
@@ -68,22 +75,6 @@ class App extends React.Component {
     })
   }
 
-  // // this one works, but overwrites state. need to add to old
-  // import(data) {
-  //   let id = this.state.postCounter;
-  //   this.setState ({
-  //     posts: {[id]: {
-  //       title: data.title, 
-  //       body: data.body,
-  //       author: data.author,
-  //       img: data.img,
-  //       votes: null
-  //       }
-  //     },
-  //     makingPost: false,
-  //     //dont forget to increment post counter
-  //   })
-  // }
 
   render () {
     return (
@@ -97,6 +88,10 @@ class App extends React.Component {
           id = {this.postCounter}
           export = {this.import}
           />}
+        < PostList 
+          posts = {this.state.posts}
+        
+        />
 
       </div>
     )

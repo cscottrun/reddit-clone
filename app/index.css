@@ -14,3 +14,43 @@ a {
   height: 100px;
   background-color: whitesmoke;
 }
+.newPostBtn {
+  float: right;
+  background-color: blue;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin: auto;
+}
+.postBox {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr ;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: lightblue;
+  height: 200px;
+  width: 75%;
+  margin: 15px;
+}
+.postImg {
+  display: grid;
+  grid-area: 1/1/5/2;
+  background-color: grey;
+}
+#postImg {
+height: 200px;
+object-fit: cover;
+}
+.postTitle {
+  display: grid;
+  grid-area: 1/2/2/5;
+}
+.postTitle h2 {
+  padding-left: 20px;
+}
+.postBody {
+  background-color: lightgray;
+  grid-area: 2/2/5/5;
+  padding-left: 20px;
+}
