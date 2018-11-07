@@ -9,12 +9,26 @@ class NewPostForm extends React.Component {
           title: '',
           body: '',
           author: '',
-          img: ''
-        
+          img: '',
+          touched: {
+            title: false,
+            body: true,
+            author: false,
+            img: false,
+          }
       }
 
     this.handleInput = this.handleInput.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
+  }
+
+  
+  handleBlur (e) {
+    const name = e.target.name;
+    this.setState ((prevstate) => {
+      prevstate.touched[name] = true;
+    })
   }
 
   handleInput(e) {
@@ -27,9 +41,7 @@ class NewPostForm extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    
     this.props.export(this.state);
-    //reset this state to blank
     this.setState({ 
       title: '', 
       body: '',
@@ -38,15 +50,17 @@ class NewPostForm extends React.Component {
     })
   }
   
-  // {() => this.prop.func()}
   render() {
+  
+
     return (
       <div className="form">
       <form onSubmit = {this.handleSubmit}>
 
         <label className="label">Title</label>
         <div className="control">
-          <input 
+          <input
+          onBlur={this.handleBlur} 
           className="input" 
           type="text" 
           name="title" 
@@ -57,6 +71,7 @@ class NewPostForm extends React.Component {
         <label className="label">Body</label>
         <div className="control">
           <textarea 
+          onBlur={this.handleBlur} 
           className="input" 
           type="text" 
           name="body" 
@@ -67,6 +82,7 @@ class NewPostForm extends React.Component {
         <label className="label">Author</label>
         <div className="control">
           <input 
+          onBlur={this.handleBlur} 
           className="input" 
           type="text" 
           name="author" 
@@ -77,6 +93,7 @@ class NewPostForm extends React.Component {
         <label className="label">Image Url</label>
         <div className="control">
           <input 
+          onBlur={this.handleBlur} 
           className="input" 
           type="text" 
           name="img" 
