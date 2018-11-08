@@ -1,7 +1,7 @@
 const React = require ('react');
 const PropTypes = require ('prop-types');
 const NewPostForm = require ('./NewPostForm');
-const PostList = require ('./Postlist');
+const PostList = require ('./PostList');
 const Sort = require ('./Sort');
 
 function Header () {

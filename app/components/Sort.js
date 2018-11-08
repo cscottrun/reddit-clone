@@ -36,6 +36,8 @@ class Sort extends React.Component {
 
       < PostList 
         sortedPosts = {this.handleSort(this.props)}
+        upvote = {this.props.upvote}
+        downvote = {this.props.downvote}
       />
       
     )
