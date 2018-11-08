@@ -20,6 +20,13 @@ function sortTopVotes(a,b) {
   return 1;
   return 0;
 }
+function sortTitle(a,b) {
+  if (a.title < b.title)
+  return -1;
+  if(a.title > b.title)
+  return 1;
+  return 0;
+}
 
 class Sort extends React.Component {
 
@@ -27,7 +34,9 @@ class Sort extends React.Component {
     if (this.props.sort === 'votes') {
       return sortedPosts = Object.values(this.props.posts).sort(sortTopVotes);
     }
-    return sortedPosts = 'not sorting by top votes- other sorting method';
+    else if (this.props.sort === 'title'){
+      return sortedPosts = Object.values(this.props.posts).sort(sortTitle) ;
+    }
   }
 
   render() {

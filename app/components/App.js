@@ -28,7 +28,7 @@ class SortSelector extends React.Component {
     return (
       <div>
         <select value={this.props.sortType} name="sort" onChange={this.props.selectSort}>
-                <option value="vote">Sort By Vote</option>
+                <option value="votes">Sort By Votes</option>
                 <option value="title">Sort By Title</option>
         </select>
       </div>
@@ -131,13 +131,13 @@ class App extends React.Component {
           id = {this.postCounter}
           export = {this.import}
           />}
-        {/* < Sort 
+        < Sort 
           sort = {this.state.sort}
           posts = {this.state.posts}
           upvote = {this.upvote}
           downvote = {this.downvote}
         
-        /> */}
+        />
 
       </div>
     )
