@@ -40,7 +40,7 @@ function PostList (props) {
             <div className= 'postBody'>
               <p>{post.body}</p>
             <div className= 'author'>-{post.author}</div>
-            <p className='timestamp'>time stamp</p>
+            <p className='timestamp'>{post.comments} comment{post.comments !==1 ? 's' : ''} </p>
             </div>
 
           

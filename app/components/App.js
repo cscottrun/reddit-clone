@@ -40,7 +40,8 @@ class App extends React.Component {
         body: 'bananas are my favorite fruit',
         author: 'Zubair',
         img: 'https://media.licdn.com/dms/image/C4D03AQGDsySczUr_sw/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=AZozQ7cXLfTayXPXj2IsXMUmYxfSLgkIPJ_XdPIAD3k',
-        votes: 4
+        votes: 4,
+        comments: 1
       },
       2: {
         id: 2,
@@ -48,7 +49,8 @@ class App extends React.Component {
         body: 'this is my second post',
         author: 'carrie',
         img: 'https://www.noelgay.com/wp-content/uploads/2017/10/Carrie-Scott-2-185x230.jpg',
-        votes: 2
+        votes: 2,
+        comments: 3
       }}
     }
     this.openForm = this.openForm.bind(this);
@@ -70,7 +72,8 @@ class App extends React.Component {
       body: data.body,
       author: data.author,
       img: data.img,
-      votes: null
+      votes: null,
+      comments: null
     }
     this.setState( (prevstate) => {
       prevstate.posts[id] = newPost;
