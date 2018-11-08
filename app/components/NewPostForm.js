@@ -107,6 +107,7 @@ class NewPostForm extends React.Component {
           onChange={this.handleInput}/>
         </div>
         
+        
         <div className="control">
         <input className = 'createpost' type="submit" value="Create Post" />
         </div>

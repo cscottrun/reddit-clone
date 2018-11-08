@@ -51,7 +51,8 @@ class App extends React.Component {
         author: 'Zubair',
         img: 'https://media.licdn.com/dms/image/C4D03AQGDsySczUr_sw/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=AZozQ7cXLfTayXPXj2IsXMUmYxfSLgkIPJ_XdPIAD3k',
         votes: 4,
-        comments: 1
+        comments: 1,
+        timestamp: 1541701911791,
       },
       2: {
         id: 2,
@@ -60,7 +61,8 @@ class App extends React.Component {
         author: 'carrie',
         img: 'https://www.noelgay.com/wp-content/uploads/2017/10/Carrie-Scott-2-185x230.jpg',
         votes: 2,
-        comments: 3
+        comments: 3,
+        timestamp: 1541602425323,
       }}
     }
     this.openForm = this.openForm.bind(this);
@@ -92,6 +94,7 @@ class App extends React.Component {
       img: data.img,
       votes: null,
       comments: 0,
+      timestamp: new Date().getTime(),
     }
     this.setState( (prevstate) => {
       prevstate.posts[id] = newPost;
