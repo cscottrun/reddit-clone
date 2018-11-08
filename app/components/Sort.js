@@ -18,27 +18,30 @@ function sortTitle(a,b) {
   return 0;
 }
 function sortTime (a,b){
-  if (a.timestamp < b.timestamp)
+  if (a.timestamp > b.timestamp)
   return -1;
-  if(a.timestamp > b.timestamp)
+  if(a.timestamp < b.timestamp)
   return 1;
   return 0;
 }
 
-function filter (searchterm, searchobject) {
+function filterCallback (searchterm, searchobject) {
   let filterRegEx = new RegExp(searchterm, 'i')
-  return filterRegEx.test(searchobject)
+  if (searchterm.length > 0) {
+    return filterRegEx.test(searchobject)
+  }
+  return true;
 }
 
 class Sort extends React.Component {
 
   handleSort () {
     if (this.props.sort === 'votes') {
-      return sortedPosts = Object.values(this.props.posts).sort(sortTopVotes);
+      return sortedPosts = Object.values(this.props.posts).sort(sortTopVotes).filter(post => filterCallback(this.props.filter, post.title));
     } else if (this.props.sort === 'title'){
-      return sortedPosts = Object.values(this.props.posts).sort(sortTitle);
+      return sortedPosts = Object.values(this.props.posts).sort(sortTitle).filter(post => filterCallback(this.props.filter, post.title));
     } else if (this.props.sort === 'date') {
-      return sortedPosts = Object.values(this.props.posts).sort(sortTime);
+      return sortedPosts = Object.values(this.props.posts).sort(sortTime).filter(post => filterCallback(this.props.filter, post.title));
     }
   }
 

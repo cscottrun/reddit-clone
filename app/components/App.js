@@ -54,7 +54,7 @@ class App extends React.Component {
       makingPost: false,
       postCounter: 3,
       sort: 'votes',
-      filter: 'banana',
+      filter: '',
       posts: {1: {
         id: 1,
         title: 'I heart bananas',
