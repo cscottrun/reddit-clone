@@ -25,6 +25,11 @@ function sortTime (a,b){
   return 0;
 }
 
+function filter (searchterm, searchobject) {
+  let filterRegEx = new RegExp(searchterm, 'i')
+  return filterRegEx.test(searchobject)
+}
+
 class Sort extends React.Component {
 
   handleSort () {
@@ -37,6 +42,7 @@ class Sort extends React.Component {
     }
   }
 
+  
   render() {
     return (
 
@@ -44,6 +50,7 @@ class Sort extends React.Component {
         sortedPosts = {this.handleSort(this.props)}
         upvote = {this.props.upvote}
         downvote = {this.props.downvote}
+        filter = {this.props.filter}
       />
       
     )

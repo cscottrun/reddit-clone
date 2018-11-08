@@ -20,9 +20,6 @@ function NewPostBtn (props) {
     </button>
   )
 }
-
-// gets passed the value of App.state.sort as sortType
-// get passed function to update app.state.sort <-- selectSort
 class SortSelector extends React.Component {
   render() {
     return (
@@ -36,6 +33,18 @@ class SortSelector extends React.Component {
     )
   }
 }
+class Filter extends React.Component {
+  render() {
+    return (
+      <input 
+          type="text" 
+          name="filter" 
+          value={this.props.filter} 
+          placeholder = 'Filter'
+          onChange={this.props.handleFilter}/>
+    )
+  }
+}
 // ======================================================================
 class App extends React.Component {
   constructor (props) {
@@ -45,6 +54,7 @@ class App extends React.Component {
       makingPost: false,
       postCounter: 3,
       sort: 'votes',
+      filter: 'banana',
       posts: {1: {
         id: 1,
         title: 'I heart bananas',
@@ -68,6 +78,7 @@ class App extends React.Component {
     }
     this.openForm = this.openForm.bind(this);
     this.selectSort = this.selectSort.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
     this.import = this.import.bind(this);
     this.upvote = this.upvote.bind(this);
     this.downvote = this.downvote.bind(this);
@@ -80,9 +91,11 @@ class App extends React.Component {
   }
   selectSort(e) {
     value = e.target.value
-    this.setState ( 
-      {sort: value}
-    )
+    this.setState ({sort: value})
+  }
+  handleFilter(e) {
+  value = e.target.value;
+  this.setState ({filter: value})
   }
 
   import(data) {
@@ -127,6 +140,9 @@ class App extends React.Component {
         < SortSelector
           sortType = {this.sort}
           selectSort = {this.selectSort} />
+        < Filter 
+          Filter = {this.filter}
+          handleFilter = {this.handleFilter} />
         < NewPostBtn 
           makePost = {this.openForm} />
         
@@ -137,6 +153,7 @@ class App extends React.Component {
           />}
         < Sort 
           sort = {this.state.sort}
+          filter = {this.state.filter}
           posts = {this.state.posts}
           upvote = {this.upvote}
           downvote = {this.downvote}

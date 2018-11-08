@@ -14,4 +14,10 @@
 
   // sort can be by votes, or by date/time
 
+  this will be used to filter views with filter input: 
+  
+  function filter (obj, searchterm) {
+	return Object.values(obj).filter( el => /z/i.test(el.title))
+  }
+      /   / may need to adjust nesting
   
