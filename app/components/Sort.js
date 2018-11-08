@@ -24,7 +24,7 @@ function sortTopVotes(a,b) {
 class Sort extends React.Component {
 
   handleSort () {
-    if (this.props.sort === 'top votes') {
+    if (this.props.sort === 'votes') {
       return sortedPosts = Object.values(this.props.posts).sort(sortTopVotes);
     }
     return sortedPosts = 'not sorting by top votes- other sorting method';
