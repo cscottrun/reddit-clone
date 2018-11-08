@@ -91,7 +91,7 @@ class App extends React.Component {
       author: data.author,
       img: data.img,
       votes: null,
-      comments: null
+      comments: 0,
     }
     this.setState( (prevstate) => {
       prevstate.posts[id] = newPost;
