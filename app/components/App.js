@@ -30,6 +30,7 @@ class SortSelector extends React.Component {
         <select value={this.props.sortType} name="sort" onChange={this.props.selectSort}>
                 <option value="votes">Sort By Votes</option>
                 <option value="title">Sort By Title</option>
+                <option value="date">Sort By Date</option>
         </select>
       </div>
     )
