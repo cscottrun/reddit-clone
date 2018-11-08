@@ -1,9 +1,9 @@
 const React = require ('react');
 const PropTypes = require ('prop-types');
 const NewPostForm = require ('./NewPostForm');
-const PostList = require ('./Postlist')
+const PostList = require ('./Postlist');
+const Sort = require ('./Sort');
 
-//actual header
 function Header () {
   return (
     <div className = 'header'>
@@ -11,7 +11,6 @@ function Header () {
     </div>
   )
 }
-
 function NewPostBtn (props) {
   return (
     <button 
@@ -21,12 +20,7 @@ function NewPostBtn (props) {
     </button>
   )
 }
-
-
-//filter input box
-// add timestamp onSubmit
-
-
+// ======================================================================
 class App extends React.Component {
   constructor (props) {
     super (props) 
@@ -34,6 +28,7 @@ class App extends React.Component {
     this.state = {
       makingPost: false,
       postCounter: 3,
+      sort: 'top votes',
       posts: {1: {
         id: 1,
         title: 'I heart bananas',
@@ -110,7 +105,8 @@ class App extends React.Component {
           id = {this.postCounter}
           export = {this.import}
           />}
-        < PostList 
+        < Sort 
+          sort = {this.state.sort}
           posts = {this.state.posts}
           upvote = {this.upvote}
           downvote = {this.downvote}

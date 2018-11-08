@@ -1,17 +1,24 @@
 const React = require ('react');
 const PropTypes = require ('prop-types');
+      
+function sort(a,b) {
+  if (a.votes > b.votes)
+  return -1;
+  if (a.votes < b.votes)
+  return 1;
+  return 0;
+}
 
 
-//PROPS
-//sortedPosts < -- the array of posts sorted
 
-class PostList extends React.Component {
-  render() {
-    return (
-    this.props.sortedPosts.map( post => {
-      return (
-       
-        <div 
+function PostList (props) {
+  let postSorted = Object.values(props.posts).sort(sort);
+  return (
+    <div className = 'postList'>
+        {postSorted.map( post => {return(
+          
+          
+          <div 
             key= {post.id}
             className = 'postBox'>
             <div className = 'postImg'>
@@ -21,12 +28,12 @@ class PostList extends React.Component {
                 <img id = 'upvote' 
                     src="app/assets/thumb.png" 
                     alt="upvote"
-                    //onClick = {(e) => props.upvote(e,post.id)}
+                    onClick = {(e) => props.upvote(e,post.id)}
                     />
                 <img id = 'downvote' 
                     src="app/assets/thumb.png" 
                     alt="downvote"
-                    //onClick = {(e) => props.downvote(e,post.id)}
+                    onClick = {(e) => props.downvote(e,post.id)}
                     />
                 <h3 id= 'votecount'>{post.votes}</h3>
 
@@ -44,13 +51,16 @@ class PostList extends React.Component {
           </div>
 
 
-
-      )
-    })
-    )}
+          
+        )
+        })}
+      </div>
+    
+    
+    
+  )
 }
 
-module.exports = PostList;
-// return(
-//   <h1>{this.props.sortedPosts[0].title}</h1>
-// )
+
+
+module.exports= PostList;
