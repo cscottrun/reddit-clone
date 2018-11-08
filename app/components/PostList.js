@@ -1,11 +1,30 @@
 const React = require ('react');
 const PropTypes = require ('prop-types');
 
+function timeDifference (newTime,oldTime) {
+  let difference = newTime - oldTime;
+  let age = {};
+  age['days'] = Math.floor(difference/1000/60/60/24);
+    difference -= age.days*1000*60*60*24
+  age['hours'] = Math.floor(difference/1000/60/60);
+    difference -= age.hours*1000*60*60
+  age['minutes'] = Math.floor(difference/1000/60);
+    difference -= age.minutes*1000*60
+  age['seconds'] = Math.floor(difference/1000);
+    return age;
+}
 
-//PROPS
-//sortedPosts < -- the array of posts sorted
-// upvote function
-// downvote function
+function displayAge (age) {
+	if (age.minutes < 1) {
+		return (age.seconds + ' second' + (age.seconds < 2 ? ' ago': 's ago'))
+	} else if (age.hours < 1) {
+		return (age.minutes + ' minute' + (age.minutes < 2 ? ' ago' : 's ago'))
+	} else if (age.days < 1) {
+		return (age.hours + ' hour' + (age.hours < 2 ? ' ago' : 's ago'))
+	} else {
+		return (age.days + ' day' + (age.days < 2 ? ' ago' : 's ago'))
+	}
+}     
 
 class PostList extends React.Component {
   render() {
@@ -40,6 +59,7 @@ class PostList extends React.Component {
               <p>{post.body}</p>
             <div className= 'author'>-{post.author}</div>
             <p className='timestamp'>{post.comments} comment{post.comments !==1 ? 's' : ''} </p>
+            <p className= 'timestamp'>{displayAge(timeDifference(new Date(), post.timestamp))}</p>
             </div>
 
           
