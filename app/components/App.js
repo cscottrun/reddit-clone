@@ -1,9 +1,9 @@
 const React = require ('react');
 const PropTypes = require ('prop-types');
 const NewPostForm = require ('./NewPostForm');
-const PostList = require ('./Postlist')
+const PostList = require ('./PostList');
+const Sort = require ('./Sort');
 
-//actual header
 function Header () {
   return (
     <div className = 'header'>
@@ -11,7 +11,6 @@ function Header () {
     </div>
   )
 }
-
 function NewPostBtn (props) {
   return (
     <button 
@@ -22,11 +21,21 @@ function NewPostBtn (props) {
   )
 }
 
-
-//filter input box
-// add timestamp onSubmit
-
-
+// gets passed the value of App.state.sort as sortType
+// get passed function to update app.state.sort <-- selectSort
+class SortSelector extends React.Component {
+  render() {
+    return (
+      <div>
+        <select value={this.props.sortType} name="sort" onChange={this.props.selectSort}>
+                <option value="votes">Sort By Votes</option>
+                <option value="title">Sort By Title</option>
+        </select>
+      </div>
+    )
+  }
+}
+// ======================================================================
 class App extends React.Component {
   constructor (props) {
     super (props) 
@@ -34,6 +43,7 @@ class App extends React.Component {
     this.state = {
       makingPost: false,
       postCounter: 3,
+      sort: 'votes',
       posts: {1: {
         id: 1,
         title: 'I heart bananas',
@@ -54,6 +64,7 @@ class App extends React.Component {
       }}
     }
     this.openForm = this.openForm.bind(this);
+    this.selectSort = this.selectSort.bind(this);
     this.import = this.import.bind(this);
     this.upvote = this.upvote.bind(this);
     this.downvote = this.downvote.bind(this);
@@ -64,6 +75,13 @@ class App extends React.Component {
       makingPost: !prevState.makingPost
     }))
   }
+  selectSort(e) {
+    value = e.target.value
+    this.setState ( 
+      {sort: value}
+    )
+  }
+
   import(data) {
     let id = this.state.postCounter;
     let newPost = {
@@ -73,7 +91,7 @@ class App extends React.Component {
       author: data.author,
       img: data.img,
       votes: null,
-      comments: null
+      comments: 0,
     }
     this.setState( (prevstate) => {
       prevstate.posts[id] = newPost;
@@ -102,6 +120,9 @@ class App extends React.Component {
     return (
       <div className = 'container'>
         < Header />
+        < SortSelector
+          sortType = {this.sort}
+          selectSort = {this.selectSort} />
         < NewPostBtn 
           makePost = {this.openForm} />
         
@@ -110,7 +131,8 @@ class App extends React.Component {
           id = {this.postCounter}
           export = {this.import}
           />}
-        < PostList 
+        < Sort 
+          sort = {this.state.sort}
           posts = {this.state.posts}
           upvote = {this.upvote}
           downvote = {this.downvote}
