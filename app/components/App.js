@@ -62,7 +62,7 @@ class App extends React.Component {
         author: 'Zubair',
         img: 'https://media.licdn.com/dms/image/C4D03AQGDsySczUr_sw/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=AZozQ7cXLfTayXPXj2IsXMUmYxfSLgkIPJ_XdPIAD3k',
         votes: 4,
-        comments: 1,
+        comments: ['and such potasium!', 'how about banana pudding?', 'will there ever be another fruit?', 'your mom likes bananas'],
         timestamp: 1541701911791,
       },
       2: {
@@ -72,7 +72,7 @@ class App extends React.Component {
         author: 'carrie',
         img: 'https://www.noelgay.com/wp-content/uploads/2017/10/Carrie-Scott-2-185x230.jpg',
         votes: 2,
-        comments: 3,
+        comments: ['you are silly', 'that is hilarious'],
         timestamp: 1541602425323,
       },
       3:{
@@ -82,7 +82,7 @@ class App extends React.Component {
           author: 'Lady Gaga',
           img: 'https://amp.businessinsider.com/images/59c55c7a25acc209048b4de3-750-563.jpg',
           votes: 1,
-          comments: 2,
+          comments: ['I love shoes too!', 'when is the next sale?', 'get a life'],
           timestamp: 1541723342835,
         },
       }
@@ -118,8 +118,9 @@ class App extends React.Component {
       author: data.author,
       img: data.img,
       votes: null,
-      comments: 0,
+      comments: [],
       timestamp: new Date().getTime(),
+      
     }
     this.setState( (prevstate) => {
       prevstate.posts[id] = newPost;

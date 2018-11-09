@@ -24,17 +24,50 @@ function displayAge (age) {
 	} else {
 		return (age.days + ' day' + (age.days < 2 ? ' ago' : 's ago'))
 	}
-}     
+}
+
+class Comments extends React.Component {
+  render() {
+    return (
+      this.props.comments.map ( comment => {
+        return (
+          <div 
+          key = {comment}
+          className = 'comments-div'>
+            <h5>{comment}</h5>
+          </div>
+        )
+      })
+    
+    )
+  }
+}
+
 
 class PostItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showComments: false,
+    }
+    this.openComments = this.openComments.bind(this)
+  }
+
+  openComments () {
+    this.setState ( (prevState) => ({
+      showComments: !prevState.showComments
+    }))
+  }
   render () {
     return (
       
       <div 
       className = 'postBox'>
+      
       <div className = 'postImg'>
-        <img id = 'postImg' src={this.props.post.img} alt={'img for '+ this.props.post.title}/> 
+        <img className = 'postImg' src={this.props.post.img} alt={'img for '+ this.props.post.title}/> 
       </div> 
+        
         <div className = 'vote'>
           <img id = 'upvote' 
               src="app/assets/thumb.png" 
@@ -47,32 +80,39 @@ class PostItem extends React.Component {
               onClick = {(e) => this.props.downvote(e,this.props.post.id)}
               />
           <h3 id= 'votecount'>{this.props.post.votes}</h3>
-
         </div>
+
       <div className= 'postTitle'>
         <h2>{this.props.post.title}</h2>
       </div>
+
       <div className= 'postBody'>
         <p>{this.props.post.body}</p>
       <div className= 'author'>-{this.props.post.author}</div>
-      <p className='timestamp'>{this.props.post.comments} comment{this.props.post.comments !==1 ? 's' : ''} </p>
+
+      <p className='timestamp'>
+      <img src="/app/assets/comments-icon.png" 
+      alt="comments-icon"
+      className= 'comments-icon'
+      onClick = {this.openComments}
+      />
+        {this.props.post.comments.length} comment{this.props.post.comments.length !==1 ? 's' : ''} 
+      </p>
+
       <p className= 'timestamp'>{displayAge(timeDifference(new Date(), this.props.post.timestamp))}</p>
       </div>
 
-    
+      <div className = 'comments-box'>
+        {this.state.showComments && 
+        < Comments
+          comments = {this.props.post.comments} />}
+      </div>
+      
     </div>
 
     )
   }
 }
-
-   /// PROPS that went to postList that now need to go to postItem
-{/*  PostList 
-        sortedPosts = {this.handleSort(this.props)}
-        upvote = {this.props.upvote}
-        downvote = {this.props.downvote}
-        filter = {this.props.filter}
-       */}
 
 
 class PostList extends React.Component {
@@ -86,11 +126,10 @@ class PostList extends React.Component {
           upvote = {this.props.upvote}
           downvote = {this.props.downvote}
            />
-
       )
     })
-    )}
-  }
+  )}
+}
 
 
 

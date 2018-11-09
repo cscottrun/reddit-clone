@@ -55,7 +55,7 @@ border: 1px solid red;
 .postBox {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr ;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   margin-left: auto;
   margin-right: auto;
   background-color: lightgrey;
@@ -67,9 +67,13 @@ border: 1px solid red;
 .postImg {
   display: grid;
   grid-area: 1/1/5/2;
+  margin: auto;
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
 }
 #postImg {
-  margin: auto;
+margin: auto;
 height: 200px;
 object-fit: cover;
 }
@@ -96,18 +100,35 @@ object-fit: cover;
 margin: auto;
 float: right;
 height: 50px;
+cursor: pointer;
 }
 #downvote {
   margin: auto;
   float: right;
   height: 50px;
-  transform: scaleY(-1)
+  transform: scaleY(-1);
+  cursor: pointer;
   }
 #votecount{
   float: right;
   margin-right: 40px;
 }
 .timestamp {
+  margin: auto;
+  grid-area: 4/3/5/4;
   float: right;
   margin-right: 10px;
+}
+.comments-icon{
+  height: 20px;
+  cursor: pointer;
+}
+.comments-box {
+  grid-area: 1/5/5/6;
+  float: right;
+  display: block;
+}
+.comments-div h5 {
+  margin: 0;
+  padding: 0;
 }
