@@ -1,23 +1,19 @@
-// this is an input field
-// in the end it will effect the display
-// perhaps 1 component can be post box
-// post list will receive either all records 
+comments
 
-//post list will recive array from some other comp, either default, sort, or filter
-
-// app state: filter not empty, render filter view
-    // filter view will take state, filter it and then render comp list
-    // will it cause problems to have props passed through 2 levels, rather than 1? 
+this is a component that informs App.state.posts
+It's rendered in postlist, but only when it's symbol is pressed. 
+there will need to be state to track if postlist is being displayed
+comments can live as an array
 
 
-    // post list is even more simple- just takes array and maps through
+maybe each post-item of postList should be it's own component and handle it's state of whether or not it's
+displaying the post thing
+this adds another layer of abstraction for the post list, but maybe that's not a bad thing because it keeps components
+small and simple
 
-  // sort can be by votes, or by date/time
+I think this is good because as it is, postlist as a list should not keep track of all the different items temproary state of showing the comment thing. 
 
-  this will be used to filter views with filter input: 
-  
-  function filter (obj, searchterm) {
-	return Object.values(obj).filter( el => /z/i.test(el.title))
-  }
-      /   / may need to adjust nesting
+And no parent should care whether or not the kid is showing their comments. 
+
+only thing is that once a new comment is submitted, it has to pass through postlist, sort, and then to App
   

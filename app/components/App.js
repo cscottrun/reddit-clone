@@ -52,7 +52,7 @@ class App extends React.Component {
 
     this.state = {
       makingPost: false,
-      postCounter: 3,
+      postCounter: 4,
       sort: 'votes',
       filter: '',
       posts: {1: {
@@ -74,7 +74,18 @@ class App extends React.Component {
         votes: 2,
         comments: 3,
         timestamp: 1541602425323,
-      }}
+      },
+      3:{
+          id: 3,
+          title: 'Shoes Shoes',
+          body: 'I love shoes. They keep my feet warm and keep me looking good!',
+          author: 'Lady Gaga',
+          img: 'https://amp.businessinsider.com/images/59c55c7a25acc209048b4de3-750-563.jpg',
+          votes: 1,
+          comments: 2,
+          timestamp: 1541723342835,
+        },
+      }
     }
     this.openForm = this.openForm.bind(this);
     this.selectSort = this.selectSort.bind(this);
